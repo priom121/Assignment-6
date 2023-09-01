@@ -11,6 +11,7 @@ const buttonData = async ()=>{
        ` 
        buttonContainer.appendChild(div)             
    });
+
 }
 
 //    card data
@@ -19,26 +20,39 @@ const loadData = async (id) =>{
  const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
  const data = await res .json()
  const cards = data.data;
+ 
  const cardContainer = document.getElementById('card-container')
  cardContainer.textContent = '';
  cards.forEach(card =>{
             console.log(card)
       const div = document.createElement('div');
+        //  remove hidden
+  //  const imgContainer = document.getElementById('img-container')
+  //  if(card.length < 0){
+  //   imgContainer.classList.remove('hidden')
+  //  }
       div.innerHTML =`
       <div class="card w-80 h-80  card-compact bg-base-100 shadow-xl">
   <figure><img src="${card.thumbnail}" alt="Shoes" /></figure>
   <div class="card-body">
-    <h2 class="card-title">${card.title}</h2>
-    <p>${card.authors[0].profile_name} ${ card?.authors[1]?.verified? card?.authors[1]?.verified : ''}</p>
+   <div class="flex gap-4">
+   <img class="w-2/12 rounded-3xl h-12 " src ="${card.authors[0].profile_picture}">
+   <h2 class="card-title text-xl font-bold">${card.title}</h2>
+   </div>
+    <img src = "">
+    <div class="flex ">
+    <p class="text-sm font-semibold">${card.authors[0].profile_name}</p>
+    <p></p>
+    </div>
     <p>${card.others.views}</p>
   </div>
 </div>
       ` 
-  cardContainer.appendChild(div)
+  cardContainer.appendChild(div);
+
  })
 
 }
 
 buttonData()
 loadData(1000)
-

@@ -11,7 +11,7 @@
      <header>
       <!-- nav bar  -->
        <div class=" max-w-screen-xl  lg:max-w-screen-2xl mx-auto">
-      <div class="navbar justify-between bg-base-100">
+      <div class="navbar justify-center gap-2 lg:justify-between bg-base-100">
        <img class="smw-2/6 " src="./Logo.png">
        <button class="btn bg-sky-600 text-white px-0 lg:px-5 text-xs lg:text-sm">Sort by view</button>
        <button class="btn bg-[#FF1F3D] px-2 lg:px-5 text-white">Blog</button>
@@ -21,13 +21,17 @@
      </header> 
      <main>
           <!-- button -->
-        <div id="button-container" class=" max-w-screen-xl mx-auto mt-5 flex justify-center gap-5">
+        <div id="button-container" class="  max-w-screen-xl mx-auto mt-5 flex justify-center gap-1 lg:gap-5">
 
         </div>
         <!-- card data  -->
-        <div id="card-container" class=" mt-5 max-w-screen-2xl mx-auto gap-7 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-
+        <div id="card-container" class=" mt-5 max-w-screen-2xl mx-auto gap-7 py-10 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4">
+               
         </div>
+        <div id="img-container" class="max-w-screen-2xl mx-auto mt-5 justify-center hidden">
+          <img src="./Icon.png">
+          <p class="text-4xl text-red-600 font-bold"> Opps! sorry, no data available.</p>
+      </div>
      </main> 
      <script src="index.js"></script>
                           
