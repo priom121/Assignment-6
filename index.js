@@ -7,20 +7,20 @@ const buttonData = async ()=>{
 //           console.log(button);
        const div = document.createElement('div')
        div.innerHTML = `
-       <button class="btn ">${button.category}</button>
+       <button onclick="loadData('${button.category_id}')" class="btn ">${button.category}</button>
        ` 
        buttonContainer.appendChild(div)             
    });
-
 }
 
 //    card data
 const cardContainer = document.getElementById('card-container')
-const loadData = async () =>{
- const res = await fetch('https://openapi.programming-hero.com/api/videos/category/1000')
+const loadData = async (id) =>{
+ const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
  const data = await res .json()
  const cards = data.data;
  const cardContainer = document.getElementById('card-container')
+ cardContainer.textContent = '';
  cards.forEach(card =>{
             console.log(card)
       const div = document.createElement('div');
@@ -29,7 +29,7 @@ const loadData = async () =>{
   <figure><img src="${card.thumbnail}" alt="Shoes" /></figure>
   <div class="card-body">
     <h2 class="card-title">${card.title}</h2>
-    <p>${card.authors[0].profile_name} ${card.authors[1]?.verified}</p>
+    <p>${card.authors[0].profile_name} ${ card?.authors[1]?.verified? card?.authors[1]?.verified : ''}</p>
     <p>${card.others.views}</p>
   </div>
 </div>
@@ -37,10 +37,8 @@ const loadData = async () =>{
   cardContainer.appendChild(div)
  })
 
- 
 }
 
-
-
 buttonData()
-loadData()
+loadData(1000)
+
