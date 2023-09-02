@@ -15,7 +15,7 @@ const buttonData = async ()=>{
 }
 
 //    card data
-const cardContainer = document.getElementById('card-container')
+// const cardContainer = document.getElementById('card-container')
 const loadData = async (id) =>{
  const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
  const data = await res .json()
@@ -25,19 +25,25 @@ const loadData = async (id) =>{
        if(id.length > 0 ){
         imgContainer.classList.remove('hidden')
        }
-       else if(id.length < 0) {
+       else if(id.length === 0) {
         imgContainer.classList.add('hidden')
        }
  const cardContainer = document.getElementById('card-container')
  cardContainer.textContent = '';
  cards.forEach(card =>{
-            console.log(card)
+            // console.log(card)
+            // seconds to hours and minutes /
+            const secondToHourAndMinutes = card?.others?.posted_date
+            const hours = Math.floor(secondToHourAndMinutes /3600) ;
+             const makeMinutes = secondToHourAndMinutes;
+             const minutes = Math.floor(makeMinutes / 60);
+             const sToMAndH = secondToHourAndMinutes ? `${hours}hour ${minutes} minutes ago`: " " ;
+            //  console.log(sToMAndH);
       const div = document.createElement('div');
       div.innerHTML =`
       <div class="card w-80 h-80  card-compact bg-base-100 shadow-xl">
       <figure><img class="relative" src="${card.thumbnail}" alt =""/> </figure>
-      <span class=" text-white absolute mt-32 ml-52">${card.others.posted_date}</span>
-
+      <span class=" text-white absolute bg-slate-400 rounded-xl mt-28 ml-40">${sToMAndH}</span>
   <div class="card-body">
    <div class="flex gap-4">
    <img class="w-2/12 rounded-3xl h-12 " src ="${card.authors[0].profile_picture}">
@@ -45,10 +51,10 @@ const loadData = async (id) =>{
    </div>
     <img src = "">
     <div class="flex ">
-    <p class="text-xl font-semibold">${card.authors[0].profile_name}</p>
-    <p>${card.authors[0].verified}</p>
+    <p class="text-xl font-semibold">${card.authors[0].profile_name} </p>
+    <p class="text-xl text-blue-600 font-black">${card.authors[0]?.verified? '<i class=" fa-solid fa-check"></i>': ' '}</p>
     </div>
-    <p>${card.others.views}</p>
+    <p class="font-semibold">${card.others.views}</p>
   </div>
 </div>
       ` 
@@ -65,3 +71,4 @@ loadData(1000)
 anotherPage =()=>{
   window.location.href = 'blog.html'
 }
+
