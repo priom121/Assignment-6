@@ -22,10 +22,10 @@ const loadData = async (id) =>{
  const cards = data.data;
        //  remove hidden
        const imgContainer = document.getElementById('img-container')
-       if(id.length > 0 ){
+       if(cards.length === 0 ){
         imgContainer.classList.remove('hidden')
        }
-       else if(id.length === 0) {
+       else if(cards.length > 0) {
         imgContainer.classList.add('hidden')
        }
  const cardContainer = document.getElementById('card-container')
@@ -71,4 +71,18 @@ loadData(1000)
 anotherPage =()=>{
   window.location.href = 'blog.html'
 }
+
+// const sorts = [a,b]
+// sort function
+// const sort = async ()=>{
+//  const response = await fetch('https://openapi.programming-hero.com/api/videos/category/1000')
+//  const data = await response.json();
+//  const sortFunction = `${[data.data[1].others?.views]}`
+//  console.log(sortFunction);
+//  }
+
+//  sortFunction.sort(function (a ,b){
+//   return b-a
+//  })
+//  console.log(sortFunction);
 
